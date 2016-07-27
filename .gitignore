@@ -1,0 +1,6 @@
+*.img
+*.img.sparse
+padded_uboot
+ArchLinuxARM-armv7-latest.tar.gz
+logs
+rootfs

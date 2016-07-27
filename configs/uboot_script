@@ -1,0 +1,17 @@
+echo "Erase NAND memory"
+nand erase 0x0 0x200000000
+echo "Write primary SPL"
+nand write.raw.noverify 0x43000000 0x0 0xe8
+echo "Write backup SPL"
+nand write.raw.noverify 0x43000000 0x400000 0xe8
+echo "Write Uboot"
+nand write 0x4a000000 0x800000 0x400000
+echo "Setup boot env"
+setenv bootargs root=ubi0:rootfs rootfstype=ubifs rw earlyprintk ubi.mtd=4
+setenv bootcmd 'gpio set PB2; if test -n \${fel_booted} && test -n \${scriptaddr}; then echo '(FEL boot)'; source \${scriptaddr}; fi; mtdparts; ubi part UBI; ubifsmount ubi0:rootfs; ubifsload \$fdt_addr_r /boot/dtbs/sun5i-r8-chip.dtb; ubifsload \$kernel_addr_r /boot/zImage; bootz \$kernel_addr_r - \$fdt_addr_r'
+setenv fel_booted 0
+setenv video-mode sunxi:640x480-24@60,monitor=composite-ntsc,overscan_x=40,overscan_y=20
+saveenv
+echo "Go to fastboot mode"
+fastboot 0
+

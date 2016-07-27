@@ -1,0 +1,9 @@
+[submodule "RTL8723BS"]
+	path = RTL8723BS
+	url = https://github.com/NextThingCo/RTL8723BS.git
+[submodule "CHIP-u-boot"]
+	path = CHIP-u-boot
+	url = https://github.com/NextThingCo/CHIP-u-boot.git
+[submodule "CHIP-linux"]
+	path = CHIP-linux
+	url = https://github.com/NextThingCo/CHIP-linux.git
