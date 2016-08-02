@@ -9,7 +9,7 @@ REQUIRED_PROGRAMS=(
    ubinize
    mkfs.ubifs
    img2simg
-   gcc
+   ${COMPILER_PREFIX}gcc
    ${UBOOT_COMPILER_PREFIX}gcc
    patch
    mkimage

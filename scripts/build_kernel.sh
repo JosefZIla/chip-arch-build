@@ -1,11 +1,11 @@
 #!/bin/env bash
-ALLFLAGS="$MAKEFLAGS"
+ALLFLAGS="$MAKEFLAGS ARCH=arm CROSS_COMPILE=$COMPILER_PREFIX"
 
 cd $BUILD_ROOTDIR/CHIP-linux
 echo "Building kernel ..."
 {
   cp ../configs/kernel_config .config
-  let CLEAR && make clean 
+  let CLEAR && make $ALLFLAGS clean 
   make $ALLFLAGS
 } &>$BUILD_ROOTDIR/logs/kernel-build.log
 
